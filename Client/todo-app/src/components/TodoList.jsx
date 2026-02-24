@@ -1,17 +1,16 @@
 import TodoItem from "./TodoItem";
 
-function TodoList({ todos, refresh }) {
+export default function TodoList({ todos, refresh, openEditModal }) {
   return (
     <ul>
-      {todos.map(todo => (
+      {todos.map((todo) => (
         <TodoItem
           key={todo._id}
           todo={todo}
           refresh={refresh}
+          openEditModal={openEditModal}
         />
       ))}
     </ul>
   );
 }
-
-export default TodoList;
