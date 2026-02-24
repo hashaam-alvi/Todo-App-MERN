@@ -1,7 +1,3 @@
-import { useState } from "react";
-import AddNewTodo from "./AddNewTodo";
-
-
 export default function AddFromPosts({ openAddModal , refresh }) {
 
   const addFromPosts = async () => {
@@ -27,20 +23,7 @@ export default function AddFromPosts({ openAddModal , refresh }) {
       <button className="open-btn" onClick={() => openAddModal(true)}>
         + Add New Task
       </button>
-
-      {/* {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <button className="close-x" onClick={() => setIsModalOpen(false)}>×</button>
-            
-            <AddNewTodo 
-              refresh={refresh}
-              closeModal={() => setIsModalOpen(false)} 
-            />
-          </div>
-        </div>
-      )} */}
-
+      
       <button onClick={addFromPosts}>Add 5 From Posts</button>
     </>
   );

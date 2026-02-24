@@ -40,13 +40,13 @@ export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
       });
     }
 
-    refresh(); // Update the list
-    closeModal(); // Close the "small page"
+    refresh(); 
+    closeModal(); 
   };
 
   return (
     <div>
-      <h4>{existingTodo ? "Edit Task" : "Leave a Comment"}</h4>
+      <h4>{existingTodo ? "Edit Task" : "Create New Task"}</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">User Name</label>
         <input
@@ -70,7 +70,7 @@ export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
         />
         <br />
         <br />
-        <button>{existingTodo ? "Update Task" : "Submit Comment"}</button>
+        <button>{existingTodo ? "Update Task" : "Submit Task"}</button>
       </form>
     </div>
   );
