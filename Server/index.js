@@ -14,7 +14,9 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-app.listen(8081, () => {
+const port = process.env.PORT || 8081;
+
+app.listen(port, () => {
   console.log("Server started on 8081");
 });
 
