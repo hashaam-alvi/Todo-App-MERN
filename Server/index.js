@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose
-  .connect(process.env.port || "mongodb://127.0.0.1:27017/todoapp")
+  .connect(process.env.MONGO_URL || "mongodb://127.0.0.1:27017/todoapp")
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-const port =process.env.port  || 8081;
+const port =process.env.PORT  || 8081;
 
 app.listen(port, () => {
   console.log("Server started on 8081");
