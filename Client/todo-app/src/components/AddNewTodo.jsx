@@ -1,31 +1,31 @@
 import { useState, useEffect } from "react";
+import "./TodoForm.css";
 
 export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
   let [formData, setFormData] = useState({
     username: "",
     content: "",
   });
-  
-  
+
   useEffect(() => {
-      if (existingTodo) {
+    if (existingTodo) {
       setFormData({
         username: existingTodo.username,
         content: existingTodo.content,
       });
-    } 
+    }
   }, [existingTodo]);
 
   let handleInputChange = (event) => {
-      setFormData((currData) => {
-          return { ...currData, [event.target.name]: event.target.value };
+    setFormData((currData) => {
+      return { ...currData, [event.target.name]: event.target.value };
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, content } = formData;
-    
+
     if (existingTodo) {
       await fetch(`http://localhost:8081/todos/${existingTodo._id}`, {
         method: "PATCH",
@@ -40,14 +40,14 @@ export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
       });
     }
 
-    refresh(); 
-    closeModal(); 
+    refresh();
+    closeModal();
   };
 
   return (
     <div>
-      <h4>{existingTodo ? "Edit Task" : "Create New Task"}</h4>
-      <form onSubmit={handleSubmit}>
+      <h1 className="Title" >{existingTodo ? "Edit Task" : "Create New Task"}</h1>
+      <form onSubmit={handleSubmit} className="TodoForm">
         <label htmlFor="username">User Name</label>
         <input
           onChange={handleInputChange}
@@ -56,26 +56,20 @@ export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
           value={formData.username}
           id="username"
           name="username"
-          // If existingTodo exists, this will be true and prevent typing
-  readOnly={!!existingTodo} 
-  // Optional: adds a visual "disabled" look
-  className={existingTodo ? "input-disabled" : ""} 
+          readOnly={!!existingTodo}
+          className={existingTodo ? "input-disabled" : ""}
+          required
         />
-        <br />
-        <br />
         <label htmlFor="content">Task</label>
         <textarea
-          rows={10}
-          cols={60}
           onChange={handleInputChange}
-          placeholder="content"
+          placeholder="Add a New Task"
           type="text"
           value={formData.content}
           id="content"
           name="content"
+          required
         />
-        <br />
-        <br />
         <button>{existingTodo ? "Update Task" : "Submit Task"}</button>
       </form>
     </div>

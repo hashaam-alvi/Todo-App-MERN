@@ -112,3 +112,12 @@ li button:hover {
     cursor: not-allowed;
     opacity: 0.6;
 }
+
+.closeModal{
+    background: none;
+    border: none;
+    font-weight: bolder;
+    font-size: larger;
+    float: right;
+    cursor: pointer;
+}

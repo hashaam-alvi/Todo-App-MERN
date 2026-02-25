@@ -1,0 +1,100 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+textarea {
+    min-height: 250px;
+    min-width: 550px;
+    border: 2px solid blue;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: large;
+    color: #0000ff;
+}
+
+input {
+    border: 2px solid blue;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: large;
+    color: #0000ff;
+}
+
+.input-disabled{
+    border: none;
+    text-align: center;
+     color: black;
+}
+
+.TodoForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.TodoForm label {
+    color: #0000ff;
+    margin: 10px 0;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.TodoForm button {
+    margin-top: 12px;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 1000;
+    color: blue;
+    border: 5px blue solid;
+}
+
+.TodoForm button:hover {
+    background-color: blue;
+    color: white;
+    transition: color 0.5s ease, transform 3s ease;
+}
+
+.Title {
+    color: #0000ff;
+    /* margin: 10px 0; */
+    /* font-weight: bolder; */
+}
+
+@media only screen and (min-width:410px) and (max-width: 690px) {
+
+
+    textarea {
+        min-height: 250px;
+        min-width: 250px;
+    }
+}
+
+@media screen and (max-width: 409px) {
+
+
+    textarea {
+        min-height: 250px;
+        min-width: 150px;
+    }
+}

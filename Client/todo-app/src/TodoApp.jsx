@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
 import AddFromPosts from "./components/AddFromPosts";
 import AddNewTodo from "./components/AddNewTodo";
-import "./components/style.css"
+import "./components/style.css";
+("use client");
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
@@ -35,26 +37,47 @@ export default function TodoApp() {
 
   return (
     <div className="TodoAppContainer">
-      <h1 className="title"><span>MERN</span>  Todo's</h1>
+      <h1 className="title">
+        <span>MERN</span> Todo's
+      </h1>
 
-      <TodoList todos={todos} refresh={fetchTodos} openEditModal={openEditModal} />
+      <TodoList
+        todos={todos}
+        refresh={fetchTodos}
+        openEditModal={openEditModal}
+      />
 
-      <AddFromPosts openAddModal={openAddModal}  refresh={fetchTodos} />
+      <AddFromPosts openAddModal={openAddModal} refresh={fetchTodos} />
 
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-
-            <AddNewTodo
-              refresh={fetchTodos}
-              closeModal={closeModal}
-              existingTodo={editingTodo}
-            />
-            <br></br>
-            <button onClick={closeModal}>Cancel</button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isModalOpen && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            onClick={closeModal}
+          >
+            <div
+              className="modal-content"
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.7, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button onClick={closeModal} className="closeModal">
+                x
+              </button>
+              <AddNewTodo
+                refresh={fetchTodos}
+                closeModal={closeModal}
+                existingTodo={editingTodo}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
