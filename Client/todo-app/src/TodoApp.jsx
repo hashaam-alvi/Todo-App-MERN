@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
 import AddFromPosts from "./components/AddFromPosts";
 import AddNewTodo from "./components/AddNewTodo";
+import "./components/style.css"
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
@@ -33,23 +34,24 @@ export default function TodoApp() {
   }, []);
 
   return (
-    <div>
-      <h1>MERN Todo</h1>
-
-      <AddFromPosts openAddModal={openAddModal}  refresh={fetchTodos} />
+    <div className="TodoAppContainer">
+      <h1 className="title"><span>MERN</span>  Todo's</h1>
 
       <TodoList todos={todos} refresh={fetchTodos} openEditModal={openEditModal} />
+
+      <AddFromPosts openAddModal={openAddModal}  refresh={fetchTodos} />
 
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <button onClick={closeModal}>×</button>
 
             <AddNewTodo
               refresh={fetchTodos}
               closeModal={closeModal}
               existingTodo={editingTodo}
             />
+            <br></br>
+            <button onClick={closeModal}>Cancel</button>
           </div>
         </div>
       )}

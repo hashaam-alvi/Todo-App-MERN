@@ -1,3 +1,5 @@
+// import "./components/style.css"
+
 export default function AddFromPosts({ openAddModal , refresh }) {
 
   const addFromPosts = async () => {
@@ -19,12 +21,12 @@ export default function AddFromPosts({ openAddModal , refresh }) {
 
 
   return (
-    <>
+    <div className="addTaskButtons">
       <button className="open-btn" onClick={() => openAddModal(true)}>
-        + Add New Task
+        Add Todo
       </button>
-      
-      <button onClick={addFromPosts}>Add 5 From Posts</button>
-    </>
+
+      <button onClick={addFromPosts}>Get Todos</button>
+    </div>
   );
 }

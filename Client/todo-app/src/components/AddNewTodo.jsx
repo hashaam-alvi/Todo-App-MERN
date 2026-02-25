@@ -56,11 +56,17 @@ export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
           value={formData.username}
           id="username"
           name="username"
+          // If existingTodo exists, this will be true and prevent typing
+  readOnly={!!existingTodo} 
+  // Optional: adds a visual "disabled" look
+  className={existingTodo ? "input-disabled" : ""} 
         />
         <br />
         <br />
         <label htmlFor="content">Task</label>
-        <input
+        <textarea
+          rows={10}
+          cols={60}
           onChange={handleInputChange}
           placeholder="content"
           type="text"

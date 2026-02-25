@@ -2,7 +2,7 @@ import TodoItem from "./TodoItem";
 
 export default function TodoList({ todos, refresh, openEditModal }) {
   return (
-    <ul>
+    <ol className="TodoList">
       {todos.map((todo) => (
         <TodoItem
           key={todo._id}
@@ -11,6 +11,6 @@ export default function TodoList({ todos, refresh, openEditModal }) {
           openEditModal={openEditModal}
         />
       ))}
-    </ul>
+    </ol>
   );
 }

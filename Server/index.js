@@ -7,12 +7,12 @@ const Post = require("./models/Post");
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb://127.0.0.1:27017/todoapp")
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
-
+mongoose
+  .connect("mongodb://127.0.0.1:27017/todoapp")
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
 
 app.listen(8081, () => {
   console.log("Server started on 8081");
@@ -22,7 +22,6 @@ app.listen(8081, () => {
 app.get("/todos", async (req, res) => {
   const todos = await Todo.find();
   res.json(todos);
-
 });
 
 // CREATE TODO
@@ -30,21 +29,17 @@ app.post("/todos", async (req, res) => {
   const { username, content } = req.body;
   const newTodo = new Todo({
     username,
-    content
+    content,
   });
   await newTodo.save();
   res.json(newTodo);
-
 });
-
 
 // DELETE TODO
 app.delete("/todos/:id", async (req, res) => {
   await Todo.findByIdAndDelete(req.params.id);
   res.json({ success: true });
-
 });
-
 
 // TOGGLE COMPLETE
 app.patch("/todos/:id/toggle", async (req, res) => {
@@ -57,7 +52,7 @@ app.patch("/todos/:id/toggle", async (req, res) => {
 // Edit Todo
 app.patch("/todos/:id", async (req, res) => {
   const todo = await Todo.findById(req.params.id);
-  let {content} = req.body;
+  let { content } = req.body;
   todo.content = content;
   await todo.save();
   res.json(todo);
@@ -70,10 +65,6 @@ app.get("/posts", async (req, res) => {
   res.json(posts);
 });
 
-
-app.get("/", (req,res)=>{
+app.get("/", (req, res) => {
   res.send("Server running");
-
 });
-
-
