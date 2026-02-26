@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./TodoForm.css";
+import {BASE_URL} from "./config"
 
 export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
   let [formData, setFormData] = useState({
@@ -27,13 +28,13 @@ export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
     const { username, content } = formData;
 
     if (existingTodo) {
-      await fetch(`http://localhost:8081/todos/${existingTodo._id}`, {
+      await fetch(`${BASE_URL}/todos/${existingTodo._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, content }),
       });
     } else {
-      await fetch("http://localhost:8081/todos", {
+      await fetch(`${BASE_URL}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, content }),

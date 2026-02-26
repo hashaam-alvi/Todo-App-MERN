@@ -1,13 +1,15 @@
+import {BASE_URL} from "./config"
+
 export default function TodoItem({ todo, refresh, openEditModal }) {
   const deleteTodo = async () => {
-    await fetch(`http://localhost:8081/todos/${todo._id}`, {
+    await fetch(`${BASE_URL}/todos/${todo._id}`, {
       method: "DELETE",
     });
     refresh();
   };
 
   const toggle = async () => {
-    await fetch(`http://localhost:8081/todos/${todo._id}/toggle`, {
+    await fetch(`${BASE_URL}/todos/${todo._id}/toggle`, {
       method: "PATCH",
     });
     refresh();

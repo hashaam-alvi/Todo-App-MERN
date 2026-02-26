@@ -1,13 +1,14 @@
+import {BASE_URL} from "./config"
 
 
 export default function AddFromPosts({ openAddModal , refresh }) {
 
   const addFromPosts = async () => {
-    const res = await fetch("http://localhost:8081/posts");
+    const res = await fetch(`${BASE_URL}/posts`);
     const posts = await res.json();
 
     const requests = posts.slice(0, 5).map(post => 
-        fetch("http://localhost:8081/todos", {
+        fetch(`${BASE_URL}/todos`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(post),
