@@ -27,7 +27,7 @@ export default function TodoApp() {
   };
 
   const fetchTodos = async () => {
-    const res = await fetch({`${BASE_URL}/todos`);
+    const res = await fetch(`${BASE_URL}/todos`);
     const data = await res.json();
     setTodos(data);
   };
