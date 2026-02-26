@@ -5,6 +5,7 @@ import AddNewTodo from "./components/AddNewTodo";
 import "./components/style.css";
 ("use client");
 import { AnimatePresence, motion } from "framer-motion";
+import {BASE_URL} from "./components/config"
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
@@ -26,7 +27,7 @@ export default function TodoApp() {
   };
 
   const fetchTodos = async () => {
-    const res = await fetch("http://localhost:8081/todos");
+    const res = await fetch({`${BASE_URL}/todos`);
     const data = await res.json();
     setTodos(data);
   };
