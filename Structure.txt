@@ -1,0 +1,27 @@
+This Todo App is Build using MERN.
+
+    1. Mongo for Db
+    2. Express for Server/API
+    3. React for Frontend
+    4. Node.Js as environment
+
+
+Railway:
+    Used Railway to deploy Server (it was free server so credit might be finished)
+
+Mongo DB atlas Cloud:
+    Used as a cloud storage.
+
+Vercel:
+    Used to deploy our Frontend (React).
+
+Different Dependencies can be found in Package.json files.
+
+Todo App:
+    Its a simple CRUD operation app.
+    It's basic features include,
+        1. Fetching dummy data from posts (collection - todoaoo)
+        2. Adding a task.
+        3. Deleting a task.
+        4. Edit a task.
+        5. Mark a task as done.
