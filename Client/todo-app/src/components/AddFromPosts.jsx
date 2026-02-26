@@ -1,3 +1,4 @@
+import axios from "axios";
 import {BASE_URL} from "./config"
 
 
@@ -8,11 +9,12 @@ export default function AddFromPosts({ openAddModal , refresh }) {
     const posts = await res.json();
 
     const requests = posts.slice(0, 5).map(post => 
-        fetch(`${BASE_URL}/todos`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(post),
-        })
+        // fetch(, {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(post),
+        // })
+        axios.post(`${BASE_URL}/todos`,post) 
     );
 
     await Promise.all(requests);

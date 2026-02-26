@@ -1,17 +1,20 @@
 import {BASE_URL} from "./config"
+import axios  from "axios";
 
 export default function TodoItem({ todo, refresh, openEditModal }) {
   const deleteTodo = async () => {
-    await fetch(`${BASE_URL}/todos/${todo._id}`, {
-      method: "DELETE",
-    });
+    // await fetch(`${BASE_URL}/todos/${todo._id}`, {
+    //   method: "DELETE",
+    // });
+    await axios.delete(`${BASE_URL}/todos/${todo._id}`);
     refresh();
   };
 
   const toggle = async () => {
-    await fetch(`${BASE_URL}/todos/${todo._id}/toggle`, {
-      method: "PATCH",
-    });
+    // await fetch(`${BASE_URL}/todos/${todo._id}/toggle`, {
+    //   method: "PATCH",
+    // });
+    await axios.patch(`${BASE_URL}/todos/${todo._id}/toggle`);
     refresh();
   };
 

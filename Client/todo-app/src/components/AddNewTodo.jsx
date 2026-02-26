@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./TodoForm.css";
 import {BASE_URL} from "./config"
+import axios from "axios"
 
 export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
   let [formData, setFormData] = useState({
@@ -26,19 +27,23 @@ export default function AddNewTodo({ refresh, closeModal, existingTodo }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { username, content } = formData;
+    const todoData = { username, content };
 
     if (existingTodo) {
-      await fetch(`${BASE_URL}/todos/${existingTodo._id}`, {
+      /* await fetch({`${BASE_URL}/todos/${existingTodo._id}`, 
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, content }),
-      });
+      }); */
+
+        await axios.patch(`${BASE_URL}/todos/${existingTodo._id}`, todoData);
     } else {
-      await fetch(`${BASE_URL}/todos`, {
+      /* await fetch(`${BASE_URL}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, content }),
-      });
+      }); */
+      await axios.post(`${BASE_URL}/todos` , todoData)
     }
 
     refresh();
